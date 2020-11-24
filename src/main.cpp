@@ -37,6 +37,11 @@
 #include <ros/ros.h>
 #include "../include/walker.hpp"
 
+/** 
+ * @brief Main function for the walker algorithm
+ * @return zero 
+ * **/
+
 int main(int argc, char** argv) {
     // Intialise ROS node 
     ros::init(argc, argv, "walker");

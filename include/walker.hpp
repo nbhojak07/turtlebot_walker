@@ -40,14 +40,11 @@
 #include <sensor_msgs/LaserScan.h>
 #include <geometry_msgs/Twist.h>
 
-/* @brief
- * Define class
+/** @brief Walker Class
+ * 
  *
  * Class contains variable to read from sensor data and functions to facilitate
  * turning when required
- */
-/** 
- * @brief Walker Class 
  * **/
 
 class Walker {

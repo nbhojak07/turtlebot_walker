@@ -61,12 +61,13 @@ Walker::~Walker() {
 
 /** 
  * @brief Callback function for LaserScan data
- * @param data Message from /scan topic 
+ * @param data Single scan from a planar range finder
+ * @return void
  * **/
 
 void Walker::checkObstacle(const sensor_msgs::LaserScan::ConstPtr& data) {
     for(auto d : data->ranges) {
-        if (d < 1.0) {
+        if (d < 0.5) {
             checkCollision = true;
             break;
         }
@@ -75,7 +76,7 @@ void Walker::checkObstacle(const sensor_msgs::LaserScan::ConstPtr& data) {
 }
 
 /** 
- * @brief Function implementing walker algorithm
+ * @brief Function to implement the walker algorithm
  * @return void 
  * **/
 
@@ -93,12 +94,10 @@ void Walker::moveTurtle() {
     while(ros::ok()) {
         if (checkCollision) {
             ROS_INFO_STREAM("Obstacle Detected! Turning ...");
-            pos.linear.x = 0.0;
-            pos.angular.z = 1.5;
+            pos.angular.z = 0.5;
         } else {
             ROS_INFO_STREAM("Moving ahead ...");
             pos.linear.x = 0.3;
-            pos.angular.z = 0.0;
         }
 
         pub.publish(pos);
