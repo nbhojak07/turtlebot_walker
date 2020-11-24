@@ -88,7 +88,7 @@ void Walker::moveTurtle() {
     sub = nh.subscribe<sensor_msgs::LaserScan>("/scan",50, &Walker::checkObstacle, this);
 
     // Set loop rate 
-    ros::Rate loopRate(10);
+    ros::Rate loopRate(4);
 
 
     while(ros::ok()) {
