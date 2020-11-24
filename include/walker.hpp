@@ -49,20 +49,20 @@
 
 class Walker {
  private:
-        
         // ROS NodeHandle Initialization
         ros::NodeHandle nh;
-        //ROS Publisher 
+        // ROS Publisher
         ros::Publisher pub;
-        //ROS Subscriber
+        // ROS Subscriber
         ros::Subscriber sub;
         // Variable for publishing velocity
         geometry_msgs::Twist pos;
-        // Boolean variable to check collision 
+        // Boolean variable to check collision
         bool checkCollision;
- public: 
+
+ public:
         /**
-         * @brief Walker Class Constructor 
+         * @brief Walker Class Constructor
          * @param None
          *  **/
         Walker();
@@ -74,13 +74,13 @@ class Walker {
         /** 
          * @brief Callback function for LaserScan 
          * @param data Single scan from a planar range finder
-         * @return void 
+         * @return void
          * **/
-        void checkObstacle(const sensor_msgs::LaserScan::ConstPtr& data);  
+        void checkObstacle(const sensor_msgs::LaserScan::ConstPtr& data);
         /** 
          * @brief Function to implement the walker algorithm
-         * @return void 
-         * **/ 
-        void moveTurtle();    
+         * @return void
+         * **/
+        void moveTurtle();
 };
 

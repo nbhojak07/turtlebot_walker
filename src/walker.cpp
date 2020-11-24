@@ -40,7 +40,7 @@
  * @brief Constructor for the Walker Class
  * **/
 Walker::Walker() {
-    // Initialise the Collision check variable 
+    // Initialise the Collision check variable
     checkCollision = false;
 }
 
@@ -66,7 +66,7 @@ Walker::~Walker() {
  * **/
 
 void Walker::checkObstacle(const sensor_msgs::LaserScan::ConstPtr& data) {
-    for(auto d : data->ranges) {
+    for (auto d : data->ranges) {
         if (d < 0.5) {
             checkCollision = true;
             break;
@@ -84,14 +84,15 @@ void Walker::moveTurtle() {
     // Publishing Velocity on cmd_vel topic
     pub = nh.advertise<geometry_msgs::Twist>("/cmd_vel", 1000);
 
-    // Subscribing to topic /scan and using checkObstacle 
-    sub = nh.subscribe<sensor_msgs::LaserScan>("/scan",50, &Walker::checkObstacle, this);
+    // Subscribing to topic /scan and using checkObstacle
+    sub = nh.subscribe<sensor_msgs::LaserScan>("/scan", 50,
+                            &Walker::checkObstacle, this);
 
-    // Set loop rate 
+    // Set loop rate
     ros::Rate loopRate(4);
 
 
-    while(ros::ok()) {
+    while (ros::ok()) {
         if (checkCollision) {
             ROS_INFO_STREAM("Obstacle Detected! Turning ...");
             pos.angular.z = 0.5;
@@ -103,7 +104,5 @@ void Walker::moveTurtle() {
         pub.publish(pos);
         ros::spinOnce();
         loopRate.sleep();
-
-
 }
 }

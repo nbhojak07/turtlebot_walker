@@ -43,11 +43,11 @@
  * **/
 
 int main(int argc, char** argv) {
-    // Intialise ROS node 
+    // Intialise ROS node
     ros::init(argc, argv, "walker");
     // Creating an object of walker class
     Walker walker;
-    // Check if node is successfully initialized 
+    // Check if node is successfully initialized
     if (ros::isInitialized()) {
         walker.moveTurtle();
     } else {
